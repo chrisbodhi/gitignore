@@ -1,14 +1,15 @@
-### 1) Getting a handle on tracked and untracked files/dirs in git
-Let's say we have just initialized an empty git repository locally located at: `~/lab/pirate`.
+### Getting a handle on tracked and untracked files/dirs in git
+Let's say we have just initialized an empty git repository locally located at: `~/lab/pirate` by running `git init` from the command line.
 
 We are going to create several files in our project: 
 
 ![gitT1](images/t1.png)
 
 Our directory now looks like this:  
-*Note: our directory would also include a `.git` directory that is created when a repository is initialized, but its contents are beyond the scope of this readme, so we will ignore it. 
  
 ![gitT2](images/t2.png)
+
+_Note: our directory would also include a `.git` directory that is created when a repository is initialized, but its contents are beyond the scope of this readme, so we will ignore it._
 
 Now let's look at the status of the git repository. We can see nearly all of our files showing as untracked files in our working tree. We added the `--ignored` argument to our status command, so we are also seeing that `man-o-war.class` is being ignored by git. The reason for this is that my locally configured global gitignore is set to ignore `.class` files. If we have a global gitignore set, across our entire machine, any local git repository will first be filtered through our global `gitconfig` settings--the global gitignore is set in the `gitconfig` which usually resides wherever your git application is installed. We'll develop on the global gitignore vs repository specific gitignores further as we go, but for now just know that the global gitignore is the reason that `.class` files are being ignored from this git repository.
 
@@ -62,7 +63,9 @@ This is a new file into the working tree, so when we check our status, we see it
 
 Since this secret key is what we use to get inside of our `booty/treasure.json`, we'd prefer to keep it out of source control. This secret key is very specific to our pirate project and so not appropriate for our global gitignore. As such we're going to add a top level `.gitignore` to the root of our repository so it only affects this repository. Gitignores are cumulative, so global gitignores combine with directory gitignores to produce a single set of ignores that only depend on the tree paths they reside in (you can have multiple gitignores throughout your project however one at the root is nearly always sufficient). 
 
-We create a `.gitignore` file and add the `key.yaml` file to it. We also have decided that we have our own personal moral compass and aren't going to be abiding by the pirate code any more, so let's also put the `code.md` into the repository's `.gitignore`.
+We create a `.gitignore` file and add the `key.yaml` file to it.
+
+We also have decided that we have our own personal moral compass and aren't going to be abiding by the pirate code any more, so let's also put the `code.md` into the repository's `.gitignore`.
 
 Now we see the contents of our `.gitignore` and our file system tree:
 
@@ -137,15 +140,11 @@ e.g.
 
 ---
 
-### 2) Using an Adjacent global gitignore:
+### Using an Adjacent global gitignore:
 As many of these files are common to all of us, there are a number of files we can take care of ignoring with an organization-wide gitignore. That gitignore resides here in this repository. The repository will be updated and can be pulled from by any member of Adjacent's development team. 
 
-To start using this global gitignore, begin by cloning this repo:
-
-#### <https://bitbucket.org/adjacentdev/gitignore_global>
-
----
-### 3) Add the global gitignore file to your gitconfig:
+1. To start using this global gitignore, begin by cloning this repo: <https://bitbucket.org/adjacentdev/gitignore_global>
+1. Add the global gitignore file to your gitconfig:
 
 **From the CLI:**
 
